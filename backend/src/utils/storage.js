@@ -28,6 +28,7 @@ if (driver === 's3') {
 async function saveFile(key, buffer) {
   if (driver === 'local') {
     const filePath = path.join(LOCAL_DIR, key);
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
     fs.writeFileSync(filePath, buffer);
     return key;
   }
